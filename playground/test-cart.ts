@@ -3,7 +3,7 @@ import { products } from "../src/data/products.ts";
 import { addToCart, updateQuantity, removeFromCart, countItems, calcTotal } from "../src/utils/cart.ts";
 import type { CartItem } from "../src/utils/cart.ts";
 import { formatPrice } from "../src/utils/format.ts";
-import { filterProducts, getCategories } from "../src/utils/product.ts";
+import { filterProducts, getCategories, searchByPriceRange, groupByCategory } from "../src/utils/product.ts";
 
 let cart: CartItem[] = [];
 cart = addToCart(cart, products[0]);      // Áo thun x1
@@ -25,3 +25,9 @@ console.log(
   "Tìm 'áo', tối đa 300k:",
   filterProducts(products, { keyword: "áo", maxPrice: 300000 }).map((p) => p.name)
 );
+
+console.log(
+  "Giá từ 150k đến 300k:",
+  searchByPriceRange(products, 150000, 300000).map((p) => p.name)
+);
+console.log("Số sản phẩm theo danh mục:", groupByCategory(products));
